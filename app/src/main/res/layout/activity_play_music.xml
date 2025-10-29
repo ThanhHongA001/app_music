@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/pm_root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".ActivityPlayMusic">
+
+    <!-- ===== Thanh tiêu đề ===== -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pm_toolbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp">
+
+        <ImageButton
+            android:id="@+id/pm_btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_arrow_left"
+            android:background="@color/white_tr"
+            android:scaleType="centerInside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/pm_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đang phát nhạc"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ===== Khung chứa ảnh bài hát hoặc hiệu ứng phát ===== -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/pm_cover_container"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/pm_bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/pm_cover_frame"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pm_bottom_navigation" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- ===== Thông tin bài hát ===== -->
+    <LinearLayout
+        android:id="@+id/pm_info_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/pm_tv_song_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên bài hát"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/pm_tv_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ca sĩ thể hiện"
+            android:textSize="14sp"
+            android:textColor="@color/gray"/>
+    </LinearLayout>
+
+    <!-- ===== Thanh SeekBar ===== -->
+    <LinearLayout
+        android:id="@+id/pm_seekbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp">
+
+        <TextView
+            android:id="@+id/pm_tv_current_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:00"
+            android:textColor="@color/black"/>
+
+        <SeekBar
+            android:id="@+id/pm_seekbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"/>
+
+        <TextView
+            android:id="@+id/pm_tv_total_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3:45"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <!-- ===== Nút điều khiển nhạc ===== -->
+    <LinearLayout
+        android:id="@+id/pm_controls_container"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/pm_btn_prev"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_skip_previous"
+            android:background="@color/white_tr"
+            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="15dp"/>
+
+        <ImageButton
+            android:id="@+id/pm_btn_play_pause"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_play_arrow"
+            android:background="@color/white_tr"
+            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="20dp"/>
+
+        <ImageButton
+            android:id="@+id/pm_btn_next"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_skip_next"
+            android:background="@color/white_tr"
+            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="15dp"/>
+    </LinearLayout>
+
+</LinearLayout>

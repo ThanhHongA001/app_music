@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/layout_item_search_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <ImageView
+            android:id="@+id/img_item_search_album"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/bg_album_rounded"
+            android:scaleType="centerCrop"/>
+
+        <TextView
+            android:id="@+id/tv_item_search_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_vertical"
+            android:text="Album Name"
+            android:textSize="18sp"
+            android:paddingLeft="10dp" />
+
+        <ImageView
+            android:id="@+id/img_item_search_more"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_more_horiz"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
+</FrameLayout>

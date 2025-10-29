@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginTop="8dp">
+
+    <LinearLayout
+        android:id="@+id/layout_item_music_v2_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <!-- Ảnh bài hát -->
+        <ImageView
+            android:id="@+id/img_item_music_v2_cover"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/bg_album_rounded"
+            android:scaleType="centerCrop"/>
+
+        <!-- Thông tin bài hát -->
+        <LinearLayout
+            android:id="@+id/layout_item_music_v2_info"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_margin="3dp">
+
+            <!-- Tên bài hát -->
+            <TextView
+                android:id="@+id/tv_item_music_v2_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tên bài hát"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <!-- Dòng hiển thị view và like -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/img_item_music_v2_view_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_view"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/tv_item_music_v2_view_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0000 lượt nghe"
+                    android:layout_marginLeft="4dp"
+                    android:layout_gravity="center"/>
+
+                <ImageView
+                    android:id="@+id/img_item_music_v2_like_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:src="@drawable/ic_launcher_background"
+                    android:layout_gravity="center"/>
+
+                <TextView
+                    android:id="@+id/tv_item_music_v2_like_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="0000 thích"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Nút more -->
+        <ImageView
+            android:id="@+id/img_item_music_v2_more"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_more_horiz"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</FrameLayout>

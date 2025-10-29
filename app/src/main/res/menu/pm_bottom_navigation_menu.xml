@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_avatar"
+        android:title="Avatar" />
+
+    <item
+        android:id="@+id/nav_lyrics"
+        android:title="Lời bài hát" />
+
+<!--    <item-->
+<!--        android:id="@+id/nav_lyrics"-->
+<!--        android:icon="@drawable/ic_music_note"-->
+<!--        android:title="Lời bài hát" />-->
+</menu>
