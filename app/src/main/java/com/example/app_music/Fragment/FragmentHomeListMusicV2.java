@@ -47,7 +47,7 @@ public class FragmentHomeListMusicV2 extends Fragment {
         // Ngăn scroll trong RecyclerView
         rcvHomeListMusic.setNestedScrollingEnabled(false);
 
-        // Dữ liệu mẫu
+        // Dữ liệu test
         musicList = new ArrayList<>();
         musicList.add(new FragmentHomeListMusicV2_Model("Hẹn Em Ở Lần Yêu Thứ 2", 1200, 350, R.drawable.bg_album_rounded));
         musicList.add(new FragmentHomeListMusicV2_Model("Đêm Trăng Tình Yêu", 980, 240, R.drawable.bg_album_rounded));

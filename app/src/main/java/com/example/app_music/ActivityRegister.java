@@ -12,6 +12,11 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_music.Utils.SupabaseManager;
+
+/**
+ * 🧾 Màn hình Đăng ký người dùng
+ */
 public class ActivityRegister extends AppCompatActivity {
 
     private EditText edtFullname, edtEmail, edtPassword, edtConfirmPassword;
@@ -24,18 +29,25 @@ public class ActivityRegister extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_register);
 
-        // Ánh xạ view
+        // 👉 Ánh xạ view
+        bindingView();
+        // 👉 Xử lý sự kiện
+        setupEvents();
+    }
+
+    // Ánh xạ view
+    private void bindingView() {
         edtFullname = findViewById(R.id.register_edt_fullname);
         edtEmail = findViewById(R.id.register_edt_email);
         edtPassword = findViewById(R.id.register_edt_password);
         edtConfirmPassword = findViewById(R.id.register_edt_confirm_password);
         btnRegister = findViewById(R.id.register_btn_register);
         tvGoToLogin = findViewById(R.id.register_tv_go_to_login);
+    }
 
-        // 👉 Sự kiện nút đăng ký
+    // Thiết lập sự kiện
+    private void setupEvents() {
         btnRegister.setOnClickListener(v -> registerUser());
-
-        // 👉 Chuyển sang màn hình Đăng nhập
         tvGoToLogin.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityRegister.this, ActivityLogin.class);
             startActivity(intent);
@@ -43,43 +55,54 @@ public class ActivityRegister extends AppCompatActivity {
         });
     }
 
+    // Hàm xử lý đăng ký
     private void registerUser() {
         String fullname = edtFullname.getText().toString().trim();
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
         String confirmPassword = edtConfirmPassword.getText().toString().trim();
 
-        // Kiểm tra rỗng
+        // ✅ Kiểm tra hợp lệ
+        if (!validateInput(fullname, email, password, confirmPassword)) return;
+
+        // 👉 Gọi Supabase API
+        new Thread(() -> {
+            boolean success = SupabaseManager.registerUser(fullname, email, password);
+            runOnUiThread(() -> {
+                if (success) {
+                    Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, ActivityLogin.class));
+                    finish();
+                } else {
+                    Toast.makeText(this, "Email đã tồn tại hoặc lỗi server!", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }).start();
+    }
+
+    // Hàm kiểm tra dữ liệu hợp lệ
+    private boolean validateInput(String fullname, String email, String password, String confirmPassword) {
         if (TextUtils.isEmpty(fullname) || TextUtils.isEmpty(email)
                 || TextUtils.isEmpty(password) || TextUtils.isEmpty(confirmPassword)) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
-        // Kiểm tra email
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
-        // Kiểm tra mật khẩu
         if (password.length() < 6) {
             Toast.makeText(this, "Mật khẩu phải có ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
-        // Kiểm tra xác nhận mật khẩu
         if (!password.equals(confirmPassword)) {
             Toast.makeText(this, "Mật khẩu xác nhận không trùng khớp", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
-        // 👉 Giả lập đăng ký thành công
-        Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-
-        // Sau khi đăng ký xong, chuyển sang màn Login
-        Intent intent = new Intent(ActivityRegister.this, ActivityLogin.class);
-        startActivity(intent);
-        finish();
+        return true;
     }
 }

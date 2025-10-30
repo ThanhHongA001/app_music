@@ -12,6 +12,11 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_music.Utils.SupabaseManager;
+
+/**
+ * 🧾 Màn hình Đăng nhập người dùng
+ */
 public class ActivityLogin extends AppCompatActivity {
 
     private EditText edtEmail, edtPassword;
@@ -24,55 +29,68 @@ public class ActivityLogin extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        // Ánh xạ view
+        // 👉 Ánh xạ view
+        bindingView();
+        // 👉 Xử lý sự kiện
+        setupEvents();
+    }
+
+    private void bindingView() {
         edtEmail = findViewById(R.id.login_edt_email);
         edtPassword = findViewById(R.id.login_edt_password);
         btnLogin = findViewById(R.id.login_btn_login);
         tvForgotPassword = findViewById(R.id.login_tv_forgot_password);
         tvGoToRegister = findViewById(R.id.login_tv_go_to_register);
+    }
 
-        // 👉 Xử lý sự kiện đăng nhập
+    private void setupEvents() {
         btnLogin.setOnClickListener(v -> loginUser());
 
-        // 👉 Chuyển sang màn hình Đăng ký
         tvGoToRegister.setOnClickListener(v -> {
             Intent intent = new Intent(ActivityLogin.this, ActivityRegister.class);
             startActivity(intent);
         });
 
-        // 👉 Quên mật khẩu (tạm thời hiển thị thông báo)
         tvForgotPassword.setOnClickListener(v ->
                 Toast.makeText(this, "Tính năng đang phát triển", Toast.LENGTH_SHORT).show());
     }
 
+    // Hàm xử lý đăng nhập
     private void loginUser() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
 
-        // Kiểm tra rỗng
+        if (!validateInput(email, password)) return;
+
+        // 👉 Gọi Supabase API để kiểm tra đăng nhập
+        new Thread(() -> {
+            boolean success = SupabaseManager.loginUser(email, password);
+            runOnUiThread(() -> {
+                if (success) {
+                    Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
+//                     👉 Chuyển sang màn hình chính
+                     startActivity(new Intent(this, ActivityHome.class));
+                     finish();
+
+                } else {
+                    Toast.makeText(this, "Sai email hoặc mật khẩu", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }).start();
+    }
+
+    // Kiểm tra dữ liệu hợp lệ
+    private boolean validateInput(String email, String password) {
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
-        // Kiểm tra định dạng email
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(this, "Email không hợp lệ", Toast.LENGTH_SHORT).show();
-            return;
+            return false;
         }
 
-        // Kiểm tra độ dài mật khẩu
-        if (password.length() < 6) {
-            Toast.makeText(this, "Mật khẩu phải có ít nhất 6 ký tự", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // 👉 Xử lý đăng nhập (giả lập)
-        Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();
-
-        // Chuyển đến ActivityHome (sau này bạn có thể thêm)
-        // Intent intent = new Intent(ActivityLogin.this, ActivityHome.class);
-        // startActivity(intent);
-        // finish();
+        return true;
     }
 }
