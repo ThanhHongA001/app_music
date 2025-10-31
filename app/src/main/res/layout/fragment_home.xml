@@ -1,82 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/scroll_home"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:background="@android:color/white"
-    tools:context=".Fragment.FragmentHome">
+    android:background="@android:color/white">
 
-    <!-- LinearLayout chứa các fragment con -->
     <LinearLayout
         android:id="@+id/layout_home_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingBottom="16dp">
-
-        <!-- Fragment Top Music -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_top_music"
-            android:name="com.example.app_music.Fragment.FragmentTopMusic"
-            android:layout_width="300dp"
-            android:layout_height="190dp"
-            android:layout_marginBottom="12dp"
-            android:layout_gravity="center"
-            tools:layout="@layout/fragment_top_music" />
-
-        <!-- Fragment Home List Music V2 -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_home_list_music_v2_01"
-            android:name="com.example.app_music.Fragment.FragmentHomeListMusicV2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_home_list_music_v2" />
-
-        <!-- Fragment Home List Music V2 -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_home_list_music_v2_02"
-            android:name="com.example.app_music.Fragment.FragmentHomeListMusicV2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_home_list_music_v2" />
-
-        <!-- Fragment Home List Music V2 -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_home_list_music_v2_03"
-            android:name="com.example.app_music.Fragment.FragmentHomeListMusicV2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_home_list_music_v2" />
-
-        <!-- Fragment Home List Music V2 -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_home_list_music_v2_04"
-            android:name="com.example.app_music.Fragment.FragmentHomeListMusicV2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:layout="@layout/fragment_home_list_music_v2" />
-
-        <!-- Fragment Home List Music 1 -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_home_list_music_v1_1"
-            android:name="com.example.app_music.Fragment.FragmentHomeListMusicV1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            tools:layout="@layout/fragment_home_list_music_v1" />
-
-        <!-- Fragment Home List Music 2 -->
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_home_list_music_v1_2"
-            android:name="com.example.app_music.Fragment.FragmentHomeListMusicV1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            tools:layout="@layout/fragment_home_list_music_v1" />
-
+        android:padding="8dp">
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

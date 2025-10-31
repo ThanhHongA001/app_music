@@ -1,6 +1,5 @@
 package com.example.app_music.Adapter;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,43 +14,42 @@ import com.example.app_music.R;
 
 import java.util.List;
 
-public class FragmentHomeListMusicV1_Adapter extends RecyclerView.Adapter<FragmentHomeListMusicV1_Adapter.AlbumViewHolder> {
+public class FragmentHomeListMusicV1_Adapter extends RecyclerView.Adapter<FragmentHomeListMusicV1_Adapter.TopMusicViewHolder> {
 
-    private Context context;
-    private List<FragmentHomeListMusicV1_Model> albumList;
+    private List<FragmentHomeListMusicV1_Model> list;
 
-    public FragmentHomeListMusicV1_Adapter(Context context, List<FragmentHomeListMusicV1_Model> albumList) {
-        this.context = context;
-        this.albumList = albumList;
+    public FragmentHomeListMusicV1_Adapter(List<FragmentHomeListMusicV1_Model> list) {
+        this.list = list;
     }
 
     @NonNull
     @Override
-    public AlbumViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_list_music_v1, parent, false);
-        return new AlbumViewHolder(view);
+    public TopMusicViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_home_list_music_v1, parent, false);
+        return new TopMusicViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AlbumViewHolder holder, int position) {
-        FragmentHomeListMusicV1_Model album = albumList.get(position);
-        holder.tvAlbumName.setText(album.getAlbumName());
-        holder.imgAlbumCover.setImageResource(album.getAlbumImageResId());
+    public void onBindViewHolder(@NonNull TopMusicViewHolder holder, int position) {
+        FragmentHomeListMusicV1_Model item = list.get(position);
+        holder.imgBanner.setImageResource(item.getImageResId());
+        holder.tvTitle.setText(item.getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return albumList != null ? albumList.size() : 0;
+        return list.size();
     }
 
-    public static class AlbumViewHolder extends RecyclerView.ViewHolder {
-        ImageView imgAlbumCover;
-        TextView tvAlbumName;
+    public static class TopMusicViewHolder extends RecyclerView.ViewHolder {
+        ImageView imgBanner;
+        TextView tvTitle;
 
-        public AlbumViewHolder(@NonNull View itemView) {
+        public TopMusicViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgAlbumCover = itemView.findViewById(R.id.img_item_album_v1_cover);
-            tvAlbumName = itemView.findViewById(R.id.tv_item_album_v1_name);
+            imgBanner = itemView.findViewById(R.id.img_item_top_music_banner);
+            tvTitle = itemView.findViewById(R.id.tv_item_top_music_title);
         }
     }
 }

@@ -1,19 +1,19 @@
 package com.example.app_music.Model;
 
 public class FragmentHomeListMusicV1_Model {
-    private String albumName;
-    private int albumImageResId;
+    private String title;
+    private int imageResId;
 
-    public FragmentHomeListMusicV1_Model(String albumName, int albumImageResId) {
-        this.albumName = albumName;
-        this.albumImageResId = albumImageResId;
+    public FragmentHomeListMusicV1_Model(String title, int imageResId) {
+        this.title = title;
+        this.imageResId = imageResId;
     }
 
-    public String getAlbumName() {
-        return albumName;
+    public String getTitle() {
+        return title;
     }
 
-    public int getAlbumImageResId() {
-        return albumImageResId;
+    public int getImageResId() {
+        return imageResId;
     }
 }

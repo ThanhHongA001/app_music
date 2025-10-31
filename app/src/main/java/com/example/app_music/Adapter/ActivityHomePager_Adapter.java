@@ -8,9 +8,9 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.app_music.Fragment.FragmentHome;
 import com.example.app_music.Fragment.FragmentSearch;
 
-public class HomePagerAdapter extends FragmentStateAdapter {
+public class ActivityHomePager_Adapter extends FragmentStateAdapter {
 
-    public HomePagerAdapter(@NonNull FragmentActivity fragmentActivity) {
+    public ActivityHomePager_Adapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
 

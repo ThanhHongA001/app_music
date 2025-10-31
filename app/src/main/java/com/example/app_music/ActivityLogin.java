@@ -12,7 +12,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.app_music.Utils.SupabaseManager;
+import com.example.app_music.Utils.SupabaseManagerUser;
 
 /**
  * 🧾 Màn hình Đăng nhập người dùng
@@ -64,7 +64,7 @@ public class ActivityLogin extends AppCompatActivity {
 
         // 👉 Gọi Supabase API để kiểm tra đăng nhập
         new Thread(() -> {
-            boolean success = SupabaseManager.loginUser(email, password);
+            boolean success = SupabaseManagerUser.loginUser(email, password);
             runOnUiThread(() -> {
                 if (success) {
                     Toast.makeText(this, "Đăng nhập thành công!", Toast.LENGTH_SHORT).show();

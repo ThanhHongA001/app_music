@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.App_Music">
         <activity
+            android:name=".ActivityListMusic"
+            android:exported="false" />
+        <activity
             android:name=".ActivityPlayMusic"
             android:exported="false" />
         <activity

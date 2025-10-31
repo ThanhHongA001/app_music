@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.app_music.Fragment.FragmentHome;
-import com.example.app_music.Fragment.FragmentHomeListMusicV1;
+import com.example.app_music.Fragment.FragmentHomeListMusicV3;
 import com.example.app_music.Fragment.FragmentHomeListMusicV2;
 import com.example.app_music.Fragment.FragmentSearch;
-import com.example.app_music.Fragment.FragmentTopMusic;
+import com.example.app_music.Fragment.FragmentHomeListMusicV1;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -74,10 +74,10 @@ public class TestActivity extends AppCompatActivity {
         btnFR_TM = findViewById(R.id.test_btn_fr_tm);
 
         btnFR_H.setOnClickListener(v -> replaceFragment(new FragmentHome()));
-        btnFR_V1.setOnClickListener(v -> replaceFragment(new FragmentHomeListMusicV1()));
+        btnFR_V1.setOnClickListener(v -> replaceFragment(new FragmentHomeListMusicV3()));
         btnFR_V2.setOnClickListener(v -> replaceFragment(new FragmentHomeListMusicV2()));
         btnFR_S.setOnClickListener(v -> replaceFragment(new FragmentSearch()));
-        btnFR_TM.setOnClickListener(v -> replaceFragment(new FragmentTopMusic()));
+        btnFR_TM.setOnClickListener(v -> replaceFragment(new FragmentHomeListMusicV1()));
     }
 
     // Hàm tiện ích dùng chung để replace Fragment

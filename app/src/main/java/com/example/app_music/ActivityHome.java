@@ -11,7 +11,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.app_music.Adapter.HomePagerAdapter;
+import com.example.app_music.Adapter.ActivityHomePager_Adapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityHome extends AppCompatActivity {
@@ -64,7 +64,7 @@ public class ActivityHome extends AppCompatActivity {
     }
 
     private void setupViewPager() {
-        HomePagerAdapter adapter = new HomePagerAdapter(this);
+        ActivityHomePager_Adapter adapter = new ActivityHomePager_Adapter(this);
         viewPager.setAdapter(adapter);
 
         // Khi trượt ViewPager → đổi trạng thái bottom navigation
