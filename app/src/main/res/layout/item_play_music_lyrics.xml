@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_play_music_lyrics"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    android:background="@color/white_transparent">
+
+    <!-- ScrollView để có thể cuộn lời bài hát -->
+    <ScrollView
+        android:id="@+id/scrollViewLyrics"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        android:fadingEdge="none"
+        android:scrollbars="none"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <!-- LinearLayout chứa danh sách các dòng lời bài hát -->
+        <LinearLayout
+            android:id="@+id/layoutLyricsContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <!-- TextView hiển thị 1 dòng lyric (có thể nhân bản bằng code) -->
+            <TextView
+                android:id="@+id/tvLyricLine"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:lineSpacingExtra="4dp"
+                android:paddingVertical="6dp"
+                android:textStyle="normal"
+                tools:text="I see trees of green, red roses too..." />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

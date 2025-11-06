@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tạo background hình tròn có thể tái sử dụng -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="oval">
+
+    <!-- Màu nền (nếu cần, có thể đổi hoặc bỏ đi nếu chỉ muốn viền) -->
+    <solid android:color="#E0E0E0"/>
+
+    <!-- Tạo viền nhẹ cho đẹp -->
+    <stroke
+        android:width="2dp"
+        android:color="#BDBDBD"/>
+
+</shape>

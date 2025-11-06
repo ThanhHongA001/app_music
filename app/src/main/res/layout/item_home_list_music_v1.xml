@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/item_home_list_music_v1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/item_home_list_music_v1_imgSong"
+        android:layout_width="300dp"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:background="@drawable/bg_album_rounded"
+        android:adjustViewBounds="true" />
+
+    <TextView
+        android:id="@+id/item_home_list_music_v1_SongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên bài hát"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:textColor="@android:color/black" />
+
+    <TextView
+        android:id="@+id/item_home_list_music_v1_Artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tên ca sĩ"
+        android:textSize="15sp"
+        android:textColor="@android:color/black" />
+</LinearLayout>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/playmusic_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.ActivityPlayMusic">
+
+    <!-- ===== Thanh tiêu đề ===== -->
+    <LinearLayout
+        android:id="@+id/playmusic_header"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:gravity="center_vertical">
+
+        <ImageButton
+            android:id="@+id/playmusic_btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_arrow_left"
+            android:background="@color/white_transparent"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/playmusic_tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Đang phát nhạc"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginStart="10dp" />
+    </LinearLayout>
+
+    <!-- ===== Khung chứa ảnh bài hát hoặc hiệu ứng phát ===== -->
+    <LinearLayout
+        android:id="@+id/playmusic_artwork_container"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/playmusic_bottomnav_effects"
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
+        <FrameLayout
+            android:id="@+id/playmusic_frame_visualizer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="9" />
+    </LinearLayout>
+
+    <!-- ===== Thông tin bài hát ===== -->
+    <LinearLayout
+        android:id="@+id/playmusic_songinfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingVertical="8dp">
+
+        <TextView
+            android:id="@+id/playmusic_tv_songname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tên bài hát"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/playmusic_tv_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ca sĩ thể hiện"
+            android:textSize="14sp"
+            android:textColor="@color/gray"/>
+    </LinearLayout>
+
+    <!-- ===== Thanh SeekBar ===== -->
+    <LinearLayout
+        android:id="@+id/playmusic_seekbar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp">
+
+        <TextView
+            android:id="@+id/playmusic_tv_currenttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0:00"
+            android:textColor="@color/black"/>
+
+        <SeekBar
+            android:id="@+id/playmusic_seekbar_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"/>
+
+        <TextView
+            android:id="@+id/playmusic_tv_totaltime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3:45"
+            android:textColor="@color/black"/>
+    </LinearLayout>
+
+    <!-- ===== Nút điều khiển nhạc ===== -->
+    <LinearLayout
+        android:id="@+id/playmusic_controls"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageButton
+            android:id="@+id/playmusic_btn_previous"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_skip_previous"
+            android:background="@color/white_transparent"
+            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="15dp"/>
+
+        <ImageButton
+            android:id="@+id/playmusic_btn_playpause"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/ic_play_arrow"
+            android:background="@color/white_transparent"
+            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="20dp"/>
+
+        <ImageButton
+            android:id="@+id/playmusic_btn_next"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ic_skip_next"
+            android:background="@color/white_transparent"
+            android:scaleType="centerCrop"
+            android:layout_marginHorizontal="15dp"/>
+    </LinearLayout>
+
+</LinearLayout>

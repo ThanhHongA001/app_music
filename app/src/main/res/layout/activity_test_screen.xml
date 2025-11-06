@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/testscreen_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="10dp"
+    tools:context=".ActivityTestScreen">
+
+    <LinearLayout
+        android:id="@+id/testscreen_button_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <!-- Hàng đầu: các nút điều hướng màn -->
+        <LinearLayout
+            android:id="@+id/testscreen_nav_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_dangnhap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ĐN" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_dangky"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ĐK" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Play" />
+
+        </LinearLayout>
+
+        <!-- Hàng thứ hai: các fragment test -->
+        <LinearLayout
+            android:id="@+id/testscreen_fragment_buttons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_fragment_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FR_H" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_fragment_v1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FR_V1" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_fragment_v2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FR_V2" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_fragment_v3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FR_V3" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/testscreen_btn_fragment_setting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="FR_S" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- Khung chứa fragment -->
+    <FrameLayout
+        android:id="@+id/testscreen_frame_container"
+        android:layout_width="match_parent"
+        android:layout_height="600dp"
+        android:layout_weight="8" />
+
+</LinearLayout>
