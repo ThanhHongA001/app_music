@@ -22,7 +22,7 @@
             android:layout_height="40dp"
             android:layout_marginStart="10dp"
             android:src="@drawable/ic_arrow_left"
-            android:background="@color/white_transparent"
+            android:background="@android:color/transparent"
             android:scaleType="centerInside" />
 
         <TextView
@@ -36,9 +36,8 @@
             android:layout_marginStart="10dp" />
     </LinearLayout>
 
-    <!-- ===== Khung chứa ảnh bài hát hoặc hiệu ứng phát ===== -->
+    <!-- ===== Khung chứa ảnh bài hát hoặc lời bài hát ===== -->
     <LinearLayout
-        android:id="@+id/playmusic_artwork_container"
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:orientation="vertical">
@@ -46,18 +45,20 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/playmusic_bottomnav_effects"
             android:layout_width="match_parent"
-            android:layout_height="42dp" />
+            android:layout_height="42dp"
+            app:menu="@menu/pm_bottom_navigation_menu"
+            android:background="@color/white_transparent"
+            app:itemTextColor="@color/black"
+            app:itemIconTint="@color/black"/>
 
-        <FrameLayout
-            android:id="@+id/playmusic_frame_visualizer"
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/playmusic_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="9" />
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <!-- ===== Thông tin bài hát ===== -->
     <LinearLayout
-        android:id="@+id/playmusic_songinfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -84,7 +85,6 @@
 
     <!-- ===== Thanh SeekBar ===== -->
     <LinearLayout
-        android:id="@+id/playmusic_seekbar_layout"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:orientation="horizontal"
@@ -95,7 +95,7 @@
             android:id="@+id/playmusic_tv_currenttime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0:00"
+            android:text="00:00"
             android:textColor="@color/black"/>
 
         <SeekBar
@@ -109,13 +109,12 @@
             android:id="@+id/playmusic_tv_totaltime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3:45"
+            android:text="03:45"
             android:textColor="@color/black"/>
     </LinearLayout>
 
     <!-- ===== Nút điều khiển nhạc ===== -->
     <LinearLayout
-        android:id="@+id/playmusic_controls"
         android:layout_width="match_parent"
         android:layout_height="90dp"
         android:orientation="horizontal"
@@ -126,7 +125,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:src="@drawable/ic_skip_previous"
-            android:background="@color/white_transparent"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:layout_marginHorizontal="15dp"/>
 
@@ -135,7 +134,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_play_arrow"
-            android:background="@color/white_transparent"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:layout_marginHorizontal="20dp"/>
 
@@ -144,7 +143,7 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:src="@drawable/ic_skip_next"
-            android:background="@color/white_transparent"
+            android:background="@android:color/transparent"
             android:scaleType="centerCrop"
             android:layout_marginHorizontal="15dp"/>
     </LinearLayout>
