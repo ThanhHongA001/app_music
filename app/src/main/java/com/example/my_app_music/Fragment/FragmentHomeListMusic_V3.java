@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,10 +31,11 @@ import retrofit2.Response;
 public class FragmentHomeListMusic_V3 extends Fragment {
 
     private RecyclerView recyclerView;
+    private ProgressBar progressBar;
     private FragmentHomeListMusic_V3_Adapter adapter;
     private List<Song> albumList = new ArrayList<>();
 
-    public FragmentHomeListMusic_V3() { }
+    public FragmentHomeListMusic_V3() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,8 +48,9 @@ public class FragmentHomeListMusic_V3 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.home_listmusic_v3_recyclerview);
-        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        progressBar = view.findViewById(R.id.home_listmusic_v3_progressbar);
 
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
         adapter = new FragmentHomeListMusic_V3_Adapter(getContext(), albumList);
         recyclerView.setAdapter(adapter);
 
@@ -54,29 +58,40 @@ public class FragmentHomeListMusic_V3 extends Fragment {
     }
 
     private void fetchAlbums() {
-        ApiClient.getClient().create(ApiService.class)
-                .getSongsWithLimit(50)
-                .enqueue(new Callback<List<Song>>() {
-                    @Override
-                    public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            List<Song> allSongs = response.body();
-                            Map<String, Song> albumMap = new LinkedHashMap<>();
-                            for (Song song : allSongs) {
-                                if (!albumMap.containsKey(song.album_name)) {
-                                    albumMap.put(song.album_name, song);
-                                }
-                            }
-                            albumList.clear();
-                            albumList.addAll(albumMap.values());
-                            adapter.notifyDataSetChanged();
+        progressBar.setVisibility(View.VISIBLE);
+
+        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+        Call<List<Song>> call = apiService.getAllSongs();
+
+        call.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Song>> call, @NonNull Response<List<Song>> response) {
+                progressBar.setVisibility(View.GONE);
+
+                if (response.isSuccessful() && response.body() != null) {
+                    List<Song> allSongs = response.body();
+
+                    // 🔹 Nhóm theo album_name (mỗi album chỉ lấy 1 bản ghi đại diện)
+                    Map<String, Song> albumMap = new LinkedHashMap<>();
+                    for (Song song : allSongs) {
+                        if (!albumMap.containsKey(song.album_name)) {
+                            albumMap.put(song.album_name, song);
                         }
                     }
 
-                    @Override
-                    public void onFailure(Call<List<Song>> call, Throwable t) {
-                        t.printStackTrace();
-                    }
-                });
+                    albumList.clear();
+                    albumList.addAll(albumMap.values());
+                    adapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(), "Không lấy được dữ liệu album!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<List<Song>> call, @NonNull Throwable t) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(getContext(), "Lỗi API: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

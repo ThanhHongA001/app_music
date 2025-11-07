@@ -18,9 +18,8 @@ import java.util.List;
 
 public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<FragmentHomeListMusic_V2_Adapter.ViewHolder> {
 
-    private List<Song> songs = new ArrayList<>();
+    private final List<Song> songs = new ArrayList<>();
 
-    // Cập nhật dữ liệu bài hát, chỉ lấy tối đa 5 bài
     public void setSongs(List<Song> newSongs) {
         songs.clear();
         if (newSongs != null && !newSongs.isEmpty()) {
@@ -49,9 +48,8 @@ public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<Fragm
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-
-        private ImageView imgSong, iconView, iconLike, btnMore;
-        private TextView txtTitle, txtViews, txtLikes;
+        private final ImageView imgSong, iconView, iconLike, btnMore;
+        private final TextView txtTitle, txtViews, txtLikes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,8 +64,9 @@ public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<Fragm
 
         public void bind(Song song) {
             txtTitle.setText(song.title);
-            txtViews.setText("0 lượt nghe"); // placeholder
-            txtLikes.setText("0 thích");     // placeholder
+            txtViews.setText("0 lượt nghe");
+            txtLikes.setText("0 thích");
+
             Glide.with(itemView.getContext())
                     .load(song.song_avatar_url)
                     .placeholder(R.drawable.bg_album_rounded)

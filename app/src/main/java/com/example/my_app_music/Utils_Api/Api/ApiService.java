@@ -54,5 +54,16 @@ public interface ApiService {
     Call<List<Song>> getSongsByDynamicUrl(@Url String url);
 
 
+    // ----- ALBUMS -----
+    @GET("albums")
+    Call<List<Song>> getAllAlbums();
+
+    @GET("albums")
+    Call<List<Song>> getAlbumsWithLimit(@Query("limit") int limit);
+
+    @GET
+    Call<List<Song>> getAlbumsByDynamicUrl(@Url String url);
+
+
 
 }

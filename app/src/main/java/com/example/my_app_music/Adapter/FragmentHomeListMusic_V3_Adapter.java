@@ -36,10 +36,8 @@ public class FragmentHomeListMusic_V3_Adapter extends RecyclerView.Adapter<Fragm
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Song album = albumList.get(position);
-
         holder.txtName.setText(album.album_name);
 
-        // Load ảnh album bằng Glide
         Glide.with(context)
                 .load(album.album_avatar_url != null ? album.album_avatar_url : R.drawable.bg_album_rounded)
                 .into(holder.imgAlbum);
@@ -51,7 +49,6 @@ public class FragmentHomeListMusic_V3_Adapter extends RecyclerView.Adapter<Fragm
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-
         ImageView imgAlbum;
         TextView txtName;
 
