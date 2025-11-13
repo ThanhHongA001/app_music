@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.my_app_music.Activity.ActivityListMusic;
+import com.example.my_app_music.Activity.ActivityPlayMusic;
 import com.example.my_app_music.Adapter.FragmentHomeListMusic_V2_Adapter;
 import com.example.my_app_music.Utils_Api.Api.ApiClient;
 import com.example.my_app_music.Utils_Api.Api.ApiService;
@@ -43,33 +44,34 @@ public class FragmentHomeListMusic_V2 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Nhận genre từ FragmentHome
         if (getArguments() != null) {
             genre = getArguments().getString("genre", "Pop");
         }
 
-        // Set tên thể loại trên thanh tiêu đề
         binding.homeListMusicV2Tvname.setText(genre);
 
         setupRecyclerView();
         loadSongsByGenre(genre);
 
-        // Listener chuyển sang ActivityListMusic
         View.OnClickListener goToListScreen = v -> {
             Intent intent = new Intent(requireContext(), ActivityListMusic.class);
             intent.putExtra("genre", genre);
             startActivity(intent);
         };
 
-        // Click nút mũi tên
         binding.homeListMusicV2TvnameBtn.setOnClickListener(goToListScreen);
-        // (Nếu muốn) Click luôn vào chữ thể loại cũng nhảy:
-        // binding.homeListMusicV2Tvname.setOnClickListener(goToListScreen);
 
-        // Click từng bài trong list → sau này có thể mở ActivityPlayMusic
+        // ⭐⭐⭐ CLICK ITEM → MỞ PLAY MUSIC
         adapter.setOnSongClickListener(song -> {
-            // Ở Home chỉ demo toast, hoặc bạn có thể mở Player luôn
-            Toast.makeText(getContext(), "Chọn: " + song.title, Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(requireContext(), ActivityPlayMusic.class);
+
+            intent.putExtra("song_id", song.id);
+            intent.putExtra("song_title", song.title);
+            intent.putExtra("song_artist", song.artist_name);
+            intent.putExtra("song_avatar", song.song_avatar_url);
+            intent.putExtra("song_url", song.mp3_url);
+
+            startActivity(intent);
         });
     }
 
@@ -79,7 +81,6 @@ public class FragmentHomeListMusic_V2 extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {
-                // Nếu fragment nằm trong ScrollView ở Home thì để false
                 return false;
             }
         };

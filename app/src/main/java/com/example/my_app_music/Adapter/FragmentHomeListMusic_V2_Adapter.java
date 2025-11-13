@@ -20,7 +20,6 @@ public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<Fragm
 
     private final List<Song> songs = new ArrayList<>();
 
-    // Listener click
     public interface OnSongClickListener {
         void onSongClick(Song song);
     }
@@ -90,7 +89,6 @@ public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<Fragm
                 }
             });
 
-            // Có thể gán click cho btnMore riêng nếu muốn
             btnMore.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onSongClick(song);
