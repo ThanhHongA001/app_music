@@ -1,5 +1,6 @@
 package com.example.my_app_music.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.example.my_app_music.Activity.ActivityListMusic;
 import com.example.my_app_music.Adapter.FragmentHomeListMusic_V2_Adapter;
-import com.example.my_app_music.R;
 import com.example.my_app_music.Utils_Api.Api.ApiClient;
 import com.example.my_app_music.Utils_Api.Api.ApiService;
 import com.example.my_app_music.Utils_Api.Api.Constants;
@@ -29,7 +30,7 @@ public class FragmentHomeListMusic_V2 extends Fragment {
 
     private FragmentHomeListMusicV2Binding binding;
     private FragmentHomeListMusic_V2_Adapter adapter;
-    private String genre = "Pop"; // giá trị mặc định
+    private String genre = "Pop"; // Giá trị mặc định
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -47,27 +48,44 @@ public class FragmentHomeListMusic_V2 extends Fragment {
             genre = getArguments().getString("genre", "Pop");
         }
 
-        binding.homeListmusicV2TvTitle.setText(genre);
+        // Set tên thể loại trên thanh tiêu đề
+        binding.homeListMusicV2Tvname.setText(genre);
+
         setupRecyclerView();
         loadSongsByGenre(genre);
 
-        // Xử lý nút ">>>"
-        binding.homeListmusicV2BtnMore.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "Xem thêm thể loại: " + genre, Toast.LENGTH_SHORT).show();
-            // TODO: có thể replace sang FragmentGenreDetail
+        // Listener chuyển sang ActivityListMusic
+        View.OnClickListener goToListScreen = v -> {
+            Intent intent = new Intent(requireContext(), ActivityListMusic.class);
+            intent.putExtra("genre", genre);
+            startActivity(intent);
+        };
+
+        // Click nút mũi tên
+        binding.homeListMusicV2TvnameBtn.setOnClickListener(goToListScreen);
+        // (Nếu muốn) Click luôn vào chữ thể loại cũng nhảy:
+        // binding.homeListMusicV2Tvname.setOnClickListener(goToListScreen);
+
+        // Click từng bài trong list → sau này có thể mở ActivityPlayMusic
+        adapter.setOnSongClickListener(song -> {
+            // Ở Home chỉ demo toast, hoặc bạn có thể mở Player luôn
+            Toast.makeText(getContext(), "Chọn: " + song.title, Toast.LENGTH_SHORT).show();
         });
     }
 
     private void setupRecyclerView() {
         adapter = new FragmentHomeListMusic_V2_Adapter();
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext()) {
             @Override
             public boolean canScrollVertically() {
+                // Nếu fragment nằm trong ScrollView ở Home thì để false
                 return false;
             }
         };
-        binding.homeListmusicV2Recyclerview.setLayoutManager(layoutManager);
-        binding.homeListmusicV2Recyclerview.setAdapter(adapter);
+
+        binding.homeListMusicV2RcvList.setLayoutManager(layoutManager);
+        binding.homeListMusicV2RcvList.setAdapter(adapter);
     }
 
     private void loadSongsByGenre(String genre) {

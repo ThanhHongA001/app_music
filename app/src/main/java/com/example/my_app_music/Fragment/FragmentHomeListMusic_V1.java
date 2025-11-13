@@ -30,9 +30,12 @@ import retrofit2.Response;
 
 public class FragmentHomeListMusic_V1 extends Fragment {
 
+    // ========== View & Adapter ==========
     private ViewPager2 viewPager;
     private CircleIndicator3 indicator;
     private FragmentHomeListMusic_V1_Adapter adapter;
+
+    // ========== Dữ liệu & Auto Slide ==========
     private final List<Song> songs = new ArrayList<>();
     private final Handler handler = new Handler(Looper.getMainLooper());
     private int currentPage = 0;
@@ -41,40 +44,86 @@ public class FragmentHomeListMusic_V1 extends Fragment {
     private final Runnable autoSlideRunnable = new Runnable() {
         @Override
         public void run() {
-            if (songs.isEmpty()) return;
+            if (!isAdded() || songs.isEmpty() || viewPager == null) return;
             currentPage = (currentPage + 1) % songs.size();
             viewPager.setCurrentItem(currentPage, true);
             handler.postDelayed(this, delay);
         }
     };
 
+    // ========== Lifecycle ==========
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_home_list_music_v1, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view,
+                              @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        initViews(view);
+        setupViewPager();
+        loadTop10NewSongs();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        stopAutoSlide();
+        viewPager = null;
+        indicator = null;
+    }
+
+    // ========== Nhóm hàm khởi tạo View ==========
+    private void initViews(@NonNull View view) {
         viewPager = view.findViewById(R.id.home_listmusic_v1_viewpager);
         indicator = view.findViewById(R.id.home_listmusic_v1_circleindicator3);
+    }
 
+    // ========== Nhóm hàm setup ViewPager & Indicator ==========
+    private void setupViewPager() {
         adapter = new FragmentHomeListMusic_V1_Adapter(requireContext(), songs);
         viewPager.setAdapter(adapter);
         indicator.setViewPager(viewPager);
 
-        loadTop10NewSongs();
+        // optional: đồng bộ currentPage khi swipe tay
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                currentPage = position;
+            }
+        });
+    }
+
+    // ========== Nhóm hàm Auto Slide ==========
+    private void startAutoSlide() {
+        stopAutoSlide();
+        handler.postDelayed(autoSlideRunnable, delay);
+    }
+
+    private void stopAutoSlide() {
+        handler.removeCallbacks(autoSlideRunnable);
+    }
+
+    // ========== Nhóm hàm gọi API & xử lý dữ liệu ==========
+    private ApiService getApiService() {
+        return ApiClient.getClient().create(ApiService.class);
     }
 
     private void loadTop10NewSongs() {
-        ApiClient.getClient().create(ApiService.class)
+        getApiService()
                 .getSongsByDynamicUrl(Constants.GET_TOP_10_NEW_RELEASE)
                 .enqueue(new Callback<List<Song>>() {
                     @Override
-                    public void onResponse(@NonNull Call<List<Song>> call, @NonNull Response<List<Song>> response) {
+                    public void onResponse(@NonNull Call<List<Song>> call,
+                                           @NonNull Response<List<Song>> response) {
+                        if (!isAdded()) return;
+
                         if (response.isSuccessful() && response.body() != null) {
                             songs.clear();
                             songs.addAll(response.body());
@@ -82,23 +131,25 @@ public class FragmentHomeListMusic_V1 extends Fragment {
 
                             if (!songs.isEmpty()) {
                                 currentPage = 0;
-                                handler.postDelayed(autoSlideRunnable, delay);
+                                startAutoSlide();
                             }
                         } else {
-                            Toast.makeText(requireContext(), "Không thể tải dữ liệu bài hát mới", Toast.LENGTH_SHORT).show();
+                            showToast("Không thể tải dữ liệu bài hát mới");
                         }
                     }
 
                     @Override
-                    public void onFailure(@NonNull Call<List<Song>> call, @NonNull Throwable t) {
-                        Toast.makeText(requireContext(), "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                    public void onFailure(@NonNull Call<List<Song>> call,
+                                          @NonNull Throwable t) {
+                        if (!isAdded()) return;
+                        showToast("Lỗi kết nối: " + t.getMessage());
                     }
                 });
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        handler.removeCallbacks(autoSlideRunnable);
+    // ========== Nhóm hàm tiện ích ==========
+    private void showToast(String message) {
+        if (!isAdded()) return;
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

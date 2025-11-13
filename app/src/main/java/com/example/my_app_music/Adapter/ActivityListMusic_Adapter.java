@@ -16,40 +16,43 @@ import com.example.my_app_music.Utils_Api.model.Song;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<FragmentHomeListMusic_V2_Adapter.ViewHolder> {
+public class ActivityListMusic_Adapter extends RecyclerView.Adapter<ActivityListMusic_Adapter.ViewHolder> {
+
+    // ========== Data & Listener ==========
 
     private final List<Song> songs = new ArrayList<>();
 
-    // Listener click
     public interface OnSongClickListener {
         void onSongClick(Song song);
     }
 
     private OnSongClickListener onSongClickListener;
 
+    // Setter listener click item
     public void setOnSongClickListener(OnSongClickListener listener) {
         this.onSongClickListener = listener;
     }
 
-    public void setSongs(List<Song> newSongs) {
+    // Cập nhật dữ liệu cho adapter
+    public void setData(List<Song> data) {
         songs.clear();
-        if (newSongs != null && !newSongs.isEmpty()) {
-            int size = Math.min(newSongs.size(), 5);
-            songs.addAll(newSongs.subList(0, size));
+        if (data != null) {
+            songs.addAll(data);
         }
         notifyDataSetChanged();
     }
 
+    // ========== Override RecyclerView.Adapter ==========
+
     @NonNull
     @Override
-    public FragmentHomeListMusic_V2_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_home_list_music_v2, parent, false);
-        return new ViewHolder(view);
+    public ActivityListMusic_Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = inflateItemView(parent);
+        return new ViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull FragmentHomeListMusic_V2_Adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ActivityListMusic_Adapter.ViewHolder holder, int position) {
         Song song = songs.get(position);
         holder.bind(song, onSongClickListener);
     }
@@ -59,7 +62,18 @@ public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<Fragm
         return songs.size();
     }
 
+    // ========== Nhóm hàm hỗ trợ tạo View ==========
+
+    private View inflateItemView(ViewGroup parent) {
+        // Tái sử dụng layout item_home_list_music_v2
+        return LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_home_list_music_v2, parent, false);
+    }
+
+    // ========== ViewHolder ==========
+
     static class ViewHolder extends RecyclerView.ViewHolder {
+
         private final ImageView imgSong, iconView, iconLike, btnMore;
         private final TextView txtTitle, txtViews, txtLikes;
 
@@ -74,23 +88,43 @@ public class FragmentHomeListMusic_V2_Adapter extends RecyclerView.Adapter<Fragm
             txtLikes = itemView.findViewById(R.id.home_list_music_v2_txt_likes);
         }
 
+        // ===== Nhóm hàm public để bind =====
+
         public void bind(Song song, OnSongClickListener listener) {
+            bindTitle(song);
+            bindStats(song);
+            bindImage(song);
+            setupClickListeners(song, listener);
+        }
+
+        // ===== Nhóm hàm bind dữ liệu =====
+
+        private void bindTitle(Song song) {
             txtTitle.setText(song.title);
+        }
+
+        private void bindStats(Song song) {
+            // Nếu sau này có field views / likes thì sửa chỗ này thôi
             txtViews.setText("0 lượt nghe");
             txtLikes.setText("0 thích");
+        }
 
+        private void bindImage(Song song) {
             Glide.with(itemView.getContext())
                     .load(song.song_avatar_url)
                     .placeholder(R.drawable.bg_album_rounded)
                     .into(imgSong);
+        }
 
+        // ===== Nhóm hàm xử lý sự kiện click =====
+
+        private void setupClickListeners(Song song, OnSongClickListener listener) {
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onSongClick(song);
                 }
             });
 
-            // Có thể gán click cho btnMore riêng nếu muốn
             btnMore.setOnClickListener(v -> {
                 if (listener != null) {
                     listener.onSongClick(song);

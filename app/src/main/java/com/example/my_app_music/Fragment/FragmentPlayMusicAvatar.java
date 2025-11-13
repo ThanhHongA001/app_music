@@ -22,17 +22,35 @@ public class FragmentPlayMusicAvatar extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_play_music_avatar, container, false);
-        imgAvatarMusic = view.findViewById(R.id.imgAvatarMusic);
 
-        rotationAnimator = ObjectAnimator.ofFloat(imgAvatarMusic, "rotation", 0f, 360f);
-        rotationAnimator.setDuration(8000);
-        rotationAnimator.setRepeatCount(ObjectAnimator.INFINITE);
-        rotationAnimator.setInterpolator(new LinearInterpolator());
+        View view = inflater.inflate(R.layout.fragment_play_music_avatar, container, false);
+
+        initViews(view);        // 1. Ánh xạ View
+        setupRotation();        // 2. Chuẩn bị animation xoay
 
         return view;
     }
 
+    // ==============================
+    // 1. Ánh xạ View
+    // ==============================
+    private void initViews(View view) {
+        imgAvatarMusic = view.findViewById(R.id.imgAvatarMusic);
+    }
+
+    // ==============================
+    // 2. Setup animation xoay avatar
+    // ==============================
+    private void setupRotation() {
+        rotationAnimator = ObjectAnimator.ofFloat(imgAvatarMusic, "rotation", 0f, 360f);
+        rotationAnimator.setDuration(8000);
+        rotationAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+        rotationAnimator.setInterpolator(new LinearInterpolator());
+    }
+
+    // ==============================
+    // 3. Hàm điều khiển xoay
+    // ==============================
     public void startRotate() {
         if (rotationAnimator != null) rotationAnimator.start();
     }
