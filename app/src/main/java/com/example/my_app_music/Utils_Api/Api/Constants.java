@@ -25,4 +25,12 @@ public class Constants {
         return SONGS_ENDPOINT + "?genre=eq." + genre; // giữ nguyên dấu .
     }
 
+    // 💿 ALBUMS
+    public static final String ALBUMS_ENDPOINT = BASE_URL + "albums";
+
+    public static final String GET_ALL_ALBUMS = ALBUMS_ENDPOINT;
+    public static final String GET_TOP_10_ALBUMS = ALBUMS_ENDPOINT + "?limit=10";
+
+
+
 }

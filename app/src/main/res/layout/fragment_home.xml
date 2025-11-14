@@ -1,40 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_home_scrollview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:padding="10dp"
-    tools:context=".Fragment.FragmentHome">
+    android:padding="10dp">
 
     <LinearLayout
-        android:id="@+id/home_root"
+        android:id="@+id/home_fragment_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <!-- 🧱 Phần 1: Banner slider -->
-        <FrameLayout
-            android:id="@+id/home_banner_container"
-            android:layout_width="match_parent"
-            android:layout_height="220dp"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- 🧱 Phần 2: Danh sách các thể loại nhạc -->
-        <LinearLayout
-            android:id="@+id/home_music_list_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- 🧱 Phần 3: Danh sách album -->
-        <FrameLayout
-            android:id="@+id/home_album_list_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
+        android:orientation="vertical" />
 </ScrollView>
