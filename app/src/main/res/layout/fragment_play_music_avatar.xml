@@ -15,5 +15,5 @@
         android:layout_gravity="center"
         android:background="@drawable/bg_avata_play_music"
         app:shapeAppearanceOverlay="@style/CircleImageView"
-        tools:src="@drawable/ic_launcher_foreground"/>
+        tools:src="@drawable/ic_music"/>
 </FrameLayout>

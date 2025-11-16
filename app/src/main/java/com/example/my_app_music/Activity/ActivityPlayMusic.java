@@ -151,14 +151,24 @@ public class ActivityPlayMusic extends AppCompatActivity {
         int id = intent.getIntExtra("song_id", -1);
         String title = intent.getStringExtra("song_title");
         String artist = intent.getStringExtra("song_artist");
+
+        // Đọc avatar: ưu tiên key đang dùng, fallback key cũ nếu có
         String avatarUrl = intent.getStringExtra("song_avatar");
+        if (avatarUrl == null) {
+            avatarUrl = intent.getStringExtra("song_avatar_url");
+        }
+
+        // Đọc mp3 url: ưu tiên "song_url", fallback "song_mp3_url"
         String mp3Url = intent.getStringExtra("song_url");
+        if (mp3Url == null) {
+            mp3Url = intent.getStringExtra("song_mp3_url");
+        }
 
         tvHeaderTitle.setText("Đang phát nhạc");
         if (title != null) tvSongName.setText(title);
         if (artist != null) tvArtist.setText(artist);
 
-        // Có thể dùng avatarUrl cho FragmentPlayMusicAvatar sau (Bundle / ViewModel)
+        // TODO: có thể truyền avatarUrl sang avatarFragment bằng Bundle hoặc ViewModel
 
         currentMp3Url = mp3Url;
         tvCurrentTime.setText("00:00");

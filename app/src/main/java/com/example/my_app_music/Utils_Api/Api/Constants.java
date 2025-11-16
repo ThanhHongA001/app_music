@@ -25,12 +25,26 @@ public class Constants {
         return SONGS_ENDPOINT + "?genre=eq." + genre; // giữ nguyên dấu .
     }
 
+    // 🔍 Hàm tạo URL search theo title / artist / album (Supabase PostgREST)
+    public static String buildSearchSongsUrl(String keyword) {
+        try {
+            String encoded = java.net.URLEncoder.encode(keyword, "UTF-8");
+            // or=(title.ilike.*kw*,artist_name.ilike.*kw*,album_name.ilike.*kw*)&limit=20
+            return SONGS_ENDPOINT
+                    + "?or=(title.ilike.*" + encoded
+                    + "*,artist_name.ilike.*" + encoded
+                    + "*,album_name.ilike.*" + encoded
+                    + "*)&limit=20";
+        } catch (Exception e) {
+            return SONGS_ENDPOINT + "?limit=0";
+        }
+    }
+
     // 💿 ALBUMS
     public static final String ALBUMS_ENDPOINT = BASE_URL + "albums";
 
     public static final String GET_ALL_ALBUMS = ALBUMS_ENDPOINT;
     public static final String GET_TOP_10_ALBUMS = ALBUMS_ENDPOINT + "?limit=10";
-
 
 
 }
