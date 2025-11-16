@@ -1,7 +1,7 @@
 package com.example.my_app_music.Utils_Api.Api;
 
 // 📚 Chứa toàn bộ URL & header key cho Supabase API
-public class Constants {
+public class Constants_Music {
 
     // 🌍 URL gốc của Supabase Project
     public static final String BASE_URL = "https://uenttfoksdvecerlnjoc.supabase.co/rest/v1/";

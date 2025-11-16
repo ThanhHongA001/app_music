@@ -22,9 +22,9 @@ import android.widget.Toast;
 import com.example.my_app_music.Activity.ActivityPlayMusic;
 import com.example.my_app_music.Adapter.FragmentSearch_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.ApiClient;
-import com.example.my_app_music.Utils_Api.Api.ApiService;
-import com.example.my_app_music.Utils_Api.Api.Constants;
+import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
+import com.example.my_app_music.Utils_Api.Api.Constants_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public class FragmentSearch extends Fragment {
     private ListView listResults;
 
     private FragmentSearch_Adapter searchAdapter;
-    private ApiService apiService;
+    private ApiService_Music apiServiceMusic;
 
     // Debounce
     private final Handler handler = new Handler(Looper.getMainLooper());
@@ -78,7 +78,7 @@ public class FragmentSearch extends Fragment {
     }
 
     private void setupApi() {
-        apiService = ApiClient.getClient().create(ApiService.class);
+        apiServiceMusic = ApiClient_Music.getClient().create(ApiService_Music.class);
     }
 
     private void setupListView() {
@@ -154,10 +154,10 @@ public class FragmentSearch extends Fragment {
         }
 
         // Tạo URL động từ Constants (KHÔNG sửa Constants)
-        String url = Constants.buildSearchSongsUrl(keyword);
+        String url = Constants_Music.buildSearchSongsUrl(keyword);
 
         // Gọi API bằng Retrofit
-        currentCall = apiService.getSongsByDynamicUrl(url);
+        currentCall = apiServiceMusic.getSongsByDynamicUrl(url);
 
         currentCall.enqueue(new Callback<List<Song>>() {
             @Override

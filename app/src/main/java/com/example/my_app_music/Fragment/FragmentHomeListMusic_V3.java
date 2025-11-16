@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.my_app_music.Adapter.FragmentHomeListMusic_V3_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.ApiClient;
-import com.example.my_app_music.Utils_Api.Api.ApiService;
+import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 
 import java.util.ArrayList;
@@ -69,15 +69,15 @@ public class FragmentHomeListMusic_V3 extends Fragment {
     }
 
     // ========== Nhóm hàm API ==========
-    private ApiService getApiService() {
-        return ApiClient.getClient().create(ApiService.class);
+    private ApiService_Music getApiService() {
+        return ApiClient_Music.getClient().create(ApiService_Music.class);
     }
 
     private void fetchAlbums() {
         showLoading(true);
 
-        ApiService apiService = getApiService();
-        Call<List<Song>> call = apiService.getAllSongs();
+        ApiService_Music apiServiceMusic = getApiService();
+        Call<List<Song>> call = apiServiceMusic.getAllSongs();
 
         call.enqueue(new Callback<List<Song>>() {
             @Override

@@ -15,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.my_app_music.Activity.ActivityListMusic;
 import com.example.my_app_music.Activity.ActivityPlayMusic;
 import com.example.my_app_music.Adapter.FragmentHomeListMusic_V2_Adapter;
-import com.example.my_app_music.Utils_Api.Api.ApiClient;
-import com.example.my_app_music.Utils_Api.Api.ApiService;
-import com.example.my_app_music.Utils_Api.Api.Constants;
+import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
+import com.example.my_app_music.Utils_Api.Api.Constants_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 import com.example.my_app_music.databinding.FragmentHomeListMusicV2Binding;
 
@@ -90,10 +90,10 @@ public class FragmentHomeListMusic_V2 extends Fragment {
     }
 
     private void loadSongsByGenre(String genre) {
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-        String url = Constants.getSongsByGenre(genre);
+        ApiService_Music apiServiceMusic = ApiClient_Music.getClient().create(ApiService_Music.class);
+        String url = Constants_Music.getSongsByGenre(genre);
 
-        Call<List<Song>> call = apiService.getSongsByDynamicUrl(url);
+        Call<List<Song>> call = apiServiceMusic.getSongsByDynamicUrl(url);
         call.enqueue(new Callback<List<Song>>() {
             @Override
             public void onResponse(@NonNull Call<List<Song>> call, @NonNull Response<List<Song>> response) {

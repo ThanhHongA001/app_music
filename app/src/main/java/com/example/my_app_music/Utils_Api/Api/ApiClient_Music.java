@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
 
-public class ApiClient {
+public class ApiClient_Music {
 
     private static Retrofit retrofit;
 
@@ -25,16 +25,16 @@ public class ApiClient {
     // ===================== CREATE HTTP CLIENT =====================
     private static OkHttpClient createHttpClient() {
         return new OkHttpClient.Builder()
-                .addInterceptor(ApiClient::addDefaultHeaders)
+                .addInterceptor(ApiClient_Music::addDefaultHeaders)
                 .build();
     }
 
     // Thêm các header mặc định cho mỗi request
     private static Response addDefaultHeaders(Interceptor.Chain chain) throws IOException {
         Request request = chain.request().newBuilder()
-                .addHeader(Constants.HEADER_API_KEY, Constants.API_KEY)
-                .addHeader(Constants.HEADER_AUTHORIZATION, "Bearer " + Constants.API_KEY)
-                .addHeader(Constants.HEADER_CONTENT_TYPE, "application/json")
+                .addHeader(Constants_Music.HEADER_API_KEY, Constants_Music.API_KEY)
+                .addHeader(Constants_Music.HEADER_AUTHORIZATION, "Bearer " + Constants_Music.API_KEY)
+                .addHeader(Constants_Music.HEADER_CONTENT_TYPE, "application/json")
                 .build();
         return chain.proceed(request);
     }
@@ -42,7 +42,7 @@ public class ApiClient {
     // ===================== CREATE RETROFIT =====================
     private static Retrofit createRetrofit(OkHttpClient client) {
         return new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(Constants_Music.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.my_app_music.Adapter.ActivityListMusic_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.ApiClient;
-import com.example.my_app_music.Utils_Api.Api.ApiService;
-import com.example.my_app_music.Utils_Api.Api.Constants;
+import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
+import com.example.my_app_music.Utils_Api.Api.Constants_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 
 import java.util.List;
@@ -101,13 +101,13 @@ public class ActivityListMusic extends AppCompatActivity {
     }
 
     // ========== Nhóm hàm gọi API & xử lý dữ liệu ==========
-    private ApiService getApiService() {
-        return ApiClient.getClient().create(ApiService.class);
+    private ApiService_Music getApiService() {
+        return ApiClient_Music.getClient().create(ApiService_Music.class);
     }
 
     private void loadByGenre(String genre) {
-        ApiService api = getApiService();
-        String url = Constants.getSongsByGenre(genre); // dùng nguyên hàm có sẵn
+        ApiService_Music api = getApiService();
+        String url = Constants_Music.getSongsByGenre(genre); // dùng nguyên hàm có sẵn
 
         Call<List<Song>> call = api.getSongsByDynamicUrl(url);
         call.enqueue(new Callback<List<Song>>() {

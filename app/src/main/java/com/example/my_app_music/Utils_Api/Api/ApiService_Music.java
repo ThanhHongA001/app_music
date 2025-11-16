@@ -13,7 +13,7 @@ import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
 
-public interface ApiService {
+public interface ApiService_Music {
 
     // ============================
     //        SONGS SECTION

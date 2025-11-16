@@ -15,9 +15,9 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.my_app_music.Adapter.FragmentHomeListMusic_V1_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.ApiClient;
-import com.example.my_app_music.Utils_Api.Api.ApiService;
-import com.example.my_app_music.Utils_Api.Api.Constants;
+import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
+import com.example.my_app_music.Utils_Api.Api.Constants_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 
 import java.util.ArrayList;
@@ -111,13 +111,13 @@ public class FragmentHomeListMusic_V1 extends Fragment {
     }
 
     // ========== Nhóm hàm gọi API & xử lý dữ liệu ==========
-    private ApiService getApiService() {
-        return ApiClient.getClient().create(ApiService.class);
+    private ApiService_Music getApiService() {
+        return ApiClient_Music.getClient().create(ApiService_Music.class);
     }
 
     private void loadTop10NewSongs() {
         getApiService()
-                .getSongsByDynamicUrl(Constants.GET_TOP_10_NEW_RELEASE)
+                .getSongsByDynamicUrl(Constants_Music.GET_TOP_10_NEW_RELEASE)
                 .enqueue(new Callback<List<Song>>() {
                     @Override
                     public void onResponse(@NonNull Call<List<Song>> call,
