@@ -1,9 +1,14 @@
 package com.example.my_app_music.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,6 +34,8 @@ public class Activity_Home extends AppCompatActivity {
     private TextView txtUserName;
     private CircleImageView imgUserAvatar;
     private SessionManager sessionManager;
+    private ImageView imgListFunctions;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +62,7 @@ public class Activity_Home extends AppCompatActivity {
         layoutUserInfo = findViewById(R.id.home_user_info_layout);
         txtUserName = findViewById(R.id.home_txt_user_name);
         imgUserAvatar = findViewById(R.id.home_img_user_avatar);
+        imgListFunctions = findViewById(R.id.home_list_functions);
     }
     private void initSessionAndUserUi() {
         sessionManager = new SessionManager(this);
@@ -86,6 +94,8 @@ public class Activity_Home extends AppCompatActivity {
         if (txtUserName != null) {
             txtUserName.setOnClickListener(userInfoClickListener);
         }
+
+        imgListFunctions.setOnClickListener(v -> showLeftFunctionsMenu(v));
 
         updateUserUiFromSession();
     }
@@ -174,4 +184,54 @@ public class Activity_Home extends AppCompatActivity {
             }
         });
     }
+    private void showLeftFunctionsMenu(View anchor) {
+        // Inflate layout menu
+        View menuView = getLayoutInflater().inflate(R.layout.layout_home_functions_menu, null);
+
+        // Tạo PopupWindow
+        PopupWindow popupWindow = new PopupWindow(
+                menuView,
+                getResources().getDimensionPixelSize(R.dimen.left_menu_width),
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                true // focusable
+        );
+
+        // Nếu không dùng dim background thì cho trong suốt
+        popupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        popupWindow.setOutsideTouchable(true);
+
+        // Hiển thị menu dính cạnh trái, từ trên xuống
+        popupWindow.showAtLocation(anchor, Gravity.START | Gravity.TOP, 0, 0);
+
+        // Lấy các view trong menu để xử lý click
+        TextView tvTopBxh = menuView.findViewById(R.id.menu_top_bxh);
+        TextView tvNgheSi = menuView.findViewById(R.id.menu_nghe_si_thinh_hanh);
+        TextView tvTop100 = menuView.findViewById(R.id.menu_top_100);
+        TextView tvDangYeuThich = menuView.findViewById(R.id.menu_dang_duoc_yeu_thich);
+
+        tvTopBxh.setOnClickListener(v -> {
+            // TODO: chuyển tới màn Top BXH
+            Toast.makeText(this, "Top BXH", Toast.LENGTH_SHORT).show();
+            popupWindow.dismiss();
+        });
+
+        tvNgheSi.setOnClickListener(v -> {
+            // TODO: xử lý
+            Toast.makeText(this, "Nghệ sĩ thịnh hành", Toast.LENGTH_SHORT).show();
+            popupWindow.dismiss();
+        });
+
+        tvTop100.setOnClickListener(v -> {
+            // TODO: xử lý
+            Toast.makeText(this, "Top 100", Toast.LENGTH_SHORT).show();
+            popupWindow.dismiss();
+        });
+
+        tvDangYeuThich.setOnClickListener(v -> {
+            // TODO: xử lý
+            Toast.makeText(this, "Đang được yêu thích", Toast.LENGTH_SHORT).show();
+            popupWindow.dismiss();
+        });
+    }
+
 }

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_home_functions_menu"
+    android:layout_width="260dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@drawable/bg_left_menu">
+
+    <!-- Logo + tên app (tuỳ bạn) -->
+    <TextView
+        android:id="@+id/menu_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="APP MUSIC"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#33FFFFFF"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Các mục menu -->
+    <TextView
+        android:id="@+id/menu_top_bxh"
+        style="@style/LeftMenuItem"
+        android:text="Top BXH" />
+
+    <TextView
+        android:id="@+id/menu_nghe_si_thinh_hanh"
+        style="@style/LeftMenuItem"
+        android:text="Nghệ sĩ thịnh hành" />
+
+    <TextView
+        android:id="@+id/menu_top_100"
+        style="@style/LeftMenuItem"
+        android:text="Top 100" />
+
+    <TextView
+        android:id="@+id/menu_dang_duoc_yeu_thich"
+        style="@style/LeftMenuItem"
+        android:text="Đang được yêu thích" />
+
+</LinearLayout>
