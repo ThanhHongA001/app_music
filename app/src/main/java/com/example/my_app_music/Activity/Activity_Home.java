@@ -1,15 +1,23 @@
 package com.example.my_app_music.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.my_app_music.Adapter.FragmentHome_Adapter;
 import com.example.my_app_music.R;
+
+import com.example.my_app_music.Utils_Api.Api.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.appcompat.widget.AppCompatButton;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Activity_Home extends AppCompatActivity {
 
@@ -17,23 +25,92 @@ public class Activity_Home extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FragmentHome_Adapter homeAdapter;
 
+    // NEW: View liên quan login/user info
+    private AppCompatButton btnLogin;
+    private LinearLayout layoutUserInfo;
+    private TextView txtUserName;
+    private CircleImageView imgUserAvatar;
+
+    // NEW: quản lý session
+    private SessionManager sessionManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_home);
 
-        initViews();
-        setupViewPager();
-        setupBottomNav();
-        syncViewPagerWithBottomNav();
+        initViews();                     // giữ nguyên + gắn thêm view mới
+        initSessionAndUserUi();          // NEW: tách riêng phần session + UI user
+        setupViewPager();                // logic cũ
+        setupBottomNav();                // logic cũ
+        syncViewPagerWithBottomNav();    // logic cũ
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // NEW: mỗi lần quay về Home cập nhật lại UI theo session
+        updateUserUiFromSession();
+    }
+
+    // ====== KHỞI TẠO VIEW GỐC (CŨ + MỞ RỘNG) ======
     private void initViews() {
         homeViewPager = findViewById(R.id.home_viewpager);
         bottomNavigationView = findViewById(R.id.home_bottom_navigation);
+
+        // NEW: ánh xạ các view login / user info
+        btnLogin = findViewById(R.id.home_btn_login);
+        layoutUserInfo = findViewById(R.id.home_user_info_layout);
+        txtUserName = findViewById(R.id.home_txt_user_name);
+        imgUserAvatar = findViewById(R.id.home_img_user_avatar);
     }
 
+    // ====== NEW: NHÓM PHẦN MỚI – SESSION + SỰ KIỆN LOGIN + UI ======
+    private void initSessionAndUserUi() {
+        sessionManager = new SessionManager(this);
+
+        // Sự kiện nút Đăng nhập -> sang ActivityLogin
+        if (btnLogin != null) {
+            btnLogin.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(Activity_Home.this, ActivityLogin.class);
+                    startActivity(i);
+                }
+            });
+        }
+
+        // Lần đầu mở Home, cập nhật trạng thái UI theo session
+        updateUserUiFromSession();
+    }
+
+    // NEW: cập nhật UI (ẩn/hiện nút login, hiển thị tên)
+    private void updateUserUiFromSession() {
+        if (btnLogin == null || layoutUserInfo == null || txtUserName == null) return;
+        if (sessionManager == null) return;
+
+        if (sessionManager.isLoggedIn()) {
+            // Đã đăng nhập -> ẩn nút login, hiện info
+            btnLogin.setVisibility(View.GONE);
+            layoutUserInfo.setVisibility(View.VISIBLE);
+
+            String fullName = sessionManager.getFullName();
+            if (fullName == null || fullName.trim().isEmpty()) {
+                fullName = "Người dùng";
+            }
+            txtUserName.setText(fullName);
+
+            // Avatar: tạm dùng resource sẵn trong XML
+            // Sau này có URL ảnh thì dùng Glide/Picasso để load.
+        } else {
+            // Chưa đăng nhập -> hiện nút login, ẩn info
+            btnLogin.setVisibility(View.VISIBLE);
+            layoutUserInfo.setVisibility(View.GONE);
+        }
+    }
+
+    // ====== CÁC PHẦN LOGIC CŨ – GIỮ NGUYÊN ======
     private void setupViewPager() {
         homeAdapter = new FragmentHome_Adapter(this);
         homeViewPager.setAdapter(homeAdapter);

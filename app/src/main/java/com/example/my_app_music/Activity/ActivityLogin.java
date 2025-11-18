@@ -17,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.my_app_music.R;
 import com.example.my_app_music.Utils_Api.Api.ApiClient_Users;
 import com.example.my_app_music.Utils_Api.Api.ApiService_Users;
+
+import com.example.my_app_music.Utils_Api.Api.SessionManager;
 import com.example.my_app_music.Utils_Api.model.Users;
 
 import java.util.List;
@@ -33,6 +35,7 @@ public class ActivityLogin extends AppCompatActivity {
     private LinearLayout layoutRegisterRedirect;
 
     private ApiService_Users apiServiceUsers;
+    private SessionManager sessionManager; // NEW
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,10 @@ public class ActivityLogin extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_login);
 
-        initView();
-        initApi();
-        initEvents();
+        initView();         // cũ
+        initApi();          // cũ
+        initSession();      // NEW: tách riêng
+        initEvents();       // cũ + dùng thêm session
 
         // Nếu từ màn đăng ký quay sang, có thể nhận email
         String emailFromRegister = getIntent().getStringExtra("email");
@@ -62,6 +66,11 @@ public class ActivityLogin extends AppCompatActivity {
 
     private void initApi() {
         apiServiceUsers = ApiClient_Users.getClient().create(ApiService_Users.class);
+    }
+
+    // NEW: khởi tạo SessionManager tách riêng
+    private void initSession() {
+        sessionManager = new SessionManager(this);
     }
 
     private void initEvents() {
@@ -134,19 +143,8 @@ public class ActivityLogin extends AppCompatActivity {
                     if (usersList != null && !usersList.isEmpty()) {
                         Users user = usersList.get(0);
 
-                        Toast.makeText(ActivityLogin.this,
-                                "Đăng nhập thành công! Xin chào " + user.getFullName(),
-                                Toast.LENGTH_SHORT).show();
-
-                        // TODO: nếu sau này bạn muốn hiện tên user trên Activity_Home
-                        // có thể lưu vào SharedPreferences tại đây.
-
-                        // Chuyển về màn home chính (nếu bạn có Activity_Home)
-                        Intent i = new Intent(ActivityLogin.this, Activity_Home.class);
-                        // i.putExtra("user_full_name", user.getFullName());
-                        // i.putExtra("user_email", user.getEmail());
-                        startActivity(i);
-                        finish();
+                        // NEW: gom vào hàm riêng
+                        handleLoginSuccess(user);
 
                     } else {
                         Toast.makeText(ActivityLogin.this,
@@ -166,5 +164,23 @@ public class ActivityLogin extends AppCompatActivity {
                         "Lỗi kết nối: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // NEW: xử lý khi đăng nhập thành công (lưu session + chuyển về Home)
+    private void handleLoginSuccess(Users user) {
+        if (sessionManager != null) {
+            sessionManager.saveUser(user);
+        }
+
+        Toast.makeText(ActivityLogin.this,
+                "Đăng nhập thành công! Xin chào " + user.getFullName(),
+                Toast.LENGTH_SHORT).show();
+
+        // Chuyển về màn home chính
+        Intent i = new Intent(ActivityLogin.this, Activity_Home.class);
+        // Clear stack để tránh back quay lại màn login
+        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i);
+        finish();
     }
 }

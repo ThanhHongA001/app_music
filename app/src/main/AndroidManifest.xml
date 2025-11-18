@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
     <!-- 🌐 Quyền truy cập Internet để gọi API -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- 📂 Nếu bạn cần đọc/ghi file nhạc từ bộ nhớ (tùy chọn) -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- 📂 Nếu bạn cần đọc/ghi file nhạc từ bộ nhớ (tùy chọn) -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
 
     <application
@@ -19,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.My_App_Music">
-
+        <activity
+            android:name=".Activity.ActivityMyAccout"
+            android:exported="false" />
         <!-- 🎧 Các Activity của app -->
         <activity
             android:name=".Activity.ActivityPlayMusic"
@@ -35,18 +35,16 @@
             android:exported="false" />
         <activity
             android:name=".Activity.Activity_Home"
-            android:exported="false" />
-
-        <!-- 🔰 Màn hình khởi động -->
+            android:exported="false" /> <!-- 🔰 Màn hình khởi động -->
         <activity
             android:name=".ActivityTestScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
