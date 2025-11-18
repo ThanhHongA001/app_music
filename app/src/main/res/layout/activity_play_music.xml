@@ -46,7 +46,7 @@
             android:id="@+id/playmusic_bottomnav_effects"
             android:layout_width="match_parent"
             android:layout_height="42dp"
-            app:menu="@menu/pm_bottom_navigation_menu"
+            app:menu="@menu/menu_bottom_navigation_playmusic"
             android:background="@color/white_transparent"
             app:itemTextColor="@color/black"
             app:itemIconTint="@color/black"/>

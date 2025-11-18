@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:title="Trung Tâm Cá Nhân" />
+
+    <item
+        android:id="@+id/nav_account_info"
+        android:title="Thông Tin Tài Khoản" />
+
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Đăng Xuất" />
+
+</menu>
