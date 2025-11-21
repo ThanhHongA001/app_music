@@ -18,20 +18,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.My_App_Music">
         <activity
-            android:name=".Activity.ActivityMyAccout"
-            android:exported="false" />
-        <!-- 🎧 Các Activity của app -->
-        <activity
-            android:name=".Activity.ActivityPlayMusic"
+            android:name=".Activity.ActivityEditAvatar"
             android:exported="false" />
         <activity
-            android:name=".Activity.ActivityRegister"
+            android:name=".Activity.ActivityAlbumDetail"
             android:exported="false" />
         <activity
-            android:name=".Activity.ActivityLogin"
+            android:name=".Activity.ActivityArtistDetail"
             android:exported="false" />
         <activity
-            android:name=".Activity.ActivityListMusic"
+            android:name=".Activity.ActivityCreatePlaylist"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ActivityMostLoved"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ActivityTop100"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ActivityTopBXH"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ActivityArtistTrending"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ActivityChangePassword"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.ActivityEditAccountInfo"
             android:exported="false" />
         <activity
             android:name=".Activity.Activity_Home"

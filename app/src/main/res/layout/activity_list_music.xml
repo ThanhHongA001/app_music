@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_margin="10dp"
-    tools:context=".Activity.ActivityListMusic">
+    tools:context=".Activity.Music.ActivityListMusic">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/list_music_toolbar"

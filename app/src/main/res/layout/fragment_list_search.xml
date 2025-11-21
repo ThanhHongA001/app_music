@@ -9,5 +9,29 @@
     android:layout_margin="10dp"
     tools:context=".Fragment.FragmentListSearch">
 
+    <LinearLayout
+        android:id="@+id/list_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/list_search_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kết quả tìm kiếm"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_list_search"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            tools:listitem="@layout/item_list" />
+
+    </LinearLayout>
 
 </FrameLayout>

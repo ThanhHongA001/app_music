@@ -13,11 +13,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.my_app_music.Adapter.FragmentHomeListMusic_V1_Adapter;
+import com.example.my_app_music.Adapter.Home.FragmentHomeListMusic_V1_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
-import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
-import com.example.my_app_music.Utils_Api.Api.Constants_Music;
+import com.example.my_app_music.Utils_Api.Api.Songs.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.Songs.ApiService_Music;
+import com.example.my_app_music.Utils_Api.Api.Songs.Constants_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 
 import java.util.ArrayList;

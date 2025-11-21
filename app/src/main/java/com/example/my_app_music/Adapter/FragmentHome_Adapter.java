@@ -5,8 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.my_app_music.Fragment.FragmentHome;
-import com.example.my_app_music.Fragment.FragmentSearch;
+import com.example.my_app_music.Fragment.Home.FragmentHome;
+import com.example.my_app_music.Fragment.Home.FragmentSearch;
 
 public class FragmentHome_Adapter extends FragmentStateAdapter {
 

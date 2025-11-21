@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/account_list_music_favourite"
+        android:title="List Nhạc Yêu Thích" />
+
+    <item
+        android:id="@+id/accout_list_music_recently"
+        android:title="Đã Nghe Gần Đây" />
+
+</menu>

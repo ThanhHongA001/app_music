@@ -5,7 +5,7 @@
     android:id="@+id/fragment_play_music_avatar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragment.FragmentPlayMusicAvatar">
+    tools:context=".Fragment.PlayMusic.FragmentPlayMusicAvatar">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgAvatarMusic"

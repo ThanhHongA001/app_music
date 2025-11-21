@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".Fragment.FragmentSearch">
+    tools:context=".Fragment.Home.FragmentSearch">
 
     <LinearLayout
         android:id="@+id/search_container"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginTop="10dp"
-            tools:listitem="@layout/item_search" />
+            tools:listitem="@layout/item_list" />
 
     </LinearLayout>
 

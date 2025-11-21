@@ -14,12 +14,14 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.PopupMenu;
 import android.widget.Toast;
-import com.example.my_app_music.Adapter.FragmentHome_Adapter;
+
+import com.example.my_app_music.Activity.User.ActivityLogin;
+import com.example.my_app_music.Activity.User.ActivityMyAccout;
+import com.example.my_app_music.Adapter.Home.FragmentHome_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.SessionManager;
+import com.example.my_app_music.Utils_Api.Api.Users.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.widget.AppCompatButton;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -109,11 +111,14 @@ public class Activity_Home extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_home) {
+                    // MÀN "Tài khoản của tôi" (danh sách nhạc yêu thích / gần đây)
                     Intent intent = new Intent(Activity_Home.this, ActivityMyAccout.class);
                     startActivity(intent);
                     return true;
+
                 } else if (id == R.id.nav_account_info) {
-                    Intent intent = new Intent(Activity_Home.this, ActivityMyAccout.class);
+                    // MÀN "Thông tin tài khoản"
+                    Intent intent = new Intent(Activity_Home.this, com.example.my_app_music.Activity.User.ActivityAccoutInfo.class);
                     startActivity(intent);
                     return true;
 

@@ -69,7 +69,7 @@ public class FragmentSearch_Adapter extends BaseAdapter {
         ViewHolder holder;
 
         if (convertView == null) {
-            convertView = inflater.inflate(R.layout.item_search, parent, false);
+            convertView = inflater.inflate(R.layout.item_list, parent, false);
             holder = new ViewHolder();
             holder.imgAlbum = convertView.findViewById(R.id.search_img_album);
             holder.txtName = convertView.findViewById(R.id.search_txt_name);

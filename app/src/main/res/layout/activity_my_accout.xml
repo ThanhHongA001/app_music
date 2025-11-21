@@ -3,48 +3,87 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/activity_my_accout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
-    tools:context=".Activity.ActivityMyAccout">
+    tools:context=".Activity.User.ActivityMyAccout">
 
+    <!-- Thanh trên cùng -->
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/my_accout_toolbar"
         android:layout_width="match_parent"
         android:layout_height="65dp">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:src="@drawable/bg_avata_play_music"
+        <ImageButton
+            android:id="@+id/my_accout_btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_arrow_left"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <ImageView
+            android:id="@+id/my_accout_img_avatar"
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_marginLeft="25dp"
+            android:src="@drawable/bg_avata_play_music"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/my_accout_btn_back"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/my_accout_text_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginLeft="10dp"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            android:text="Name Accout"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/my_accout_img_avatar"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/my_accout_txt_fullname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:text="Name Account" />
+
+            <TextView
+                android:id="@+id/my_accout_txt_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@android:color/darker_gray"
+                android:text="email@example.com" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!-- BottomNavigationView cho các tab thông tin tài khoản -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/my_accout_bnv"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/menu_botton_navigation_myaccout" />
 
+    <!-- ViewPager2 hiển thị nội dung từng tab -->
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/my_accout_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="9"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_marginTop="8dp"/>
 
 </LinearLayout>

@@ -12,12 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.my_app_music.Activity.ActivityListMusic;
-import com.example.my_app_music.Activity.ActivityPlayMusic;
-import com.example.my_app_music.Adapter.FragmentHomeListMusic_V2_Adapter;
-import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
-import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
-import com.example.my_app_music.Utils_Api.Api.Constants_Music;
+import com.example.my_app_music.Activity.Music.ActivityListMusic;
+import com.example.my_app_music.Activity.Music.ActivityPlayMusic;
+import com.example.my_app_music.Adapter.Home.FragmentHomeListMusic_V2_Adapter;
+import com.example.my_app_music.Utils_Api.Api.Songs.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.Songs.ApiService_Music;
+import com.example.my_app_music.Utils_Api.Api.Songs.Constants_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 import com.example.my_app_music.databinding.FragmentHomeListMusicV2Binding;
 

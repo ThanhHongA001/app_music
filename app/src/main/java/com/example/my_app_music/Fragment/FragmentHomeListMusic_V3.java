@@ -13,10 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.my_app_music.Adapter.FragmentHomeListMusic_V3_Adapter;
+import com.example.my_app_music.Adapter.Home.FragmentHomeListMusic_V3_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.ApiClient_Music;
-import com.example.my_app_music.Utils_Api.Api.ApiService_Music;
+import com.example.my_app_music.Utils_Api.Api.Songs.ApiClient_Music;
+import com.example.my_app_music.Utils_Api.Api.Songs.ApiService_Music;
 import com.example.my_app_music.Utils_Api.model.Song;
 
 import java.util.ArrayList;
