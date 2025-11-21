@@ -15,8 +15,8 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.Users.ApiClient_Users;
-import com.example.my_app_music.Utils_Api.Api.Users.ApiService_Users;
+import com.example.my_app_music.Utils_Api.Api.ApiClient_Users;
+import com.example.my_app_music.Utils_Api.Api.ApiService_Users;
 import com.example.my_app_music.Utils_Api.model.Users;
 
 import java.util.List;

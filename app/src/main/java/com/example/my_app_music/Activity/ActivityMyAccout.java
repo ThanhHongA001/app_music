@@ -10,9 +10,9 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.my_app_music.Adapter.User.ActivityMyAccout_Adapter;
+import com.example.my_app_music.Adapter.ActivityMyAccout_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.Users.SessionManager;
+import com.example.my_app_music.Utils_Api.Api.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityMyAccout extends AppCompatActivity {

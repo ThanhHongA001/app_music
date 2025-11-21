@@ -9,14 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.my_app_music.Activity.User.ActivityLogin;
-import com.example.my_app_music.Activity.Music.ActivityPlayMusic;
-import com.example.my_app_music.Activity.User.ActivityRegister;
-import com.example.my_app_music.Fragment.Home.FragmentHome;
-import com.example.my_app_music.Fragment.Home.FragmentHomeListMusic_V1;
-import com.example.my_app_music.Fragment.Home.FragmentHomeListMusic_V2;
-import com.example.my_app_music.Fragment.Home.FragmentHomeListMusic_V3;
-import com.example.my_app_music.Fragment.Home.FragmentSearch;
+import com.example.my_app_music.Activity.ActivityLogin;
+import com.example.my_app_music.Activity.ActivityPlayMusic;
+import com.example.my_app_music.Activity.ActivityRegister;
+import com.example.my_app_music.Fragment.FragmentHome;
+import com.example.my_app_music.Fragment.FragmentHomeListMusic_V1;
+import com.example.my_app_music.Fragment.FragmentHomeListMusic_V2;
+import com.example.my_app_music.Fragment.FragmentHomeListMusic_V3;
+import com.example.my_app_music.Fragment.FragmentSearch;
+import com.example.my_app_music.R;
 
 public class ActivityTestScreen extends AppCompatActivity {
 

@@ -16,8 +16,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.example.my_app_music.Fragment.PlayMusic.FragmentPlayMusicAvatar;
-import com.example.my_app_music.Fragment.PlayMusic.FragmentPlayMusicLyrics;
+import com.example.my_app_music.Fragment.FragmentPlayMusicAvatar;
+import com.example.my_app_music.Fragment.FragmentPlayMusicLyrics;
 import com.example.my_app_music.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

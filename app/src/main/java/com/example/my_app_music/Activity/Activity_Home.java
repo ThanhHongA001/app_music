@@ -17,11 +17,11 @@ import android.view.MenuItem;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.example.my_app_music.Activity.User.ActivityLogin;
-import com.example.my_app_music.Activity.User.ActivityMyAccout;
-import com.example.my_app_music.Adapter.Home.FragmentHome_Adapter;
+import com.example.my_app_music.Activity.ActivityLogin;
+import com.example.my_app_music.Activity.ActivityMyAccout;
+import com.example.my_app_music.Adapter.FragmentHome_Adapter;
 import com.example.my_app_music.R;
-import com.example.my_app_music.Utils_Api.Api.Users.SessionManager;
+import com.example.my_app_music.Utils_Api.Api.SessionManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.appcompat.widget.AppCompatButton;
 import de.hdodenhof.circleimageview.CircleImageView;
